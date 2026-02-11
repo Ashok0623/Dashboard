@@ -1,0 +1,579 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", -apple-system, BlinkMacSystemFont, "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f6fa;
+  font-size: 12px;
+  color: #333;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* ============== GOVERNMENT DASHBOARD STYLES ============== */
+.enc-admin-dashboard {
+  padding: 10px;
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+/* Header */
+.dashboard-header {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-title {
+  color: white !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+}
+
+.gov-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* ============== CARD STYLES ============== */
+.dashboard-card {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-header-govt {
+  background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: none;
+}
+
+.card-header-govt-alt {
+  background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: none;
+}
+
+/* ============== TABLE STYLES ============== */
+.govt-table {
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
+.govt-table thead th {
+  background-color: #e3f2fd;
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: #1565c0;
+  border-bottom: 1px solid #90caf9;
+  padding: 5px 6px;
+  white-space: nowrap;
+}
+
+.govt-table tbody td {
+  padding: 4px 6px;
+  vertical-align: middle;
+  border-color: #e0e0e0;
+}
+
+.govt-table-alt {
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
+.govt-table-alt thead th {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-bottom-color: #a5d6a7;
+  font-weight: 600;
+  font-size: 0.68rem;
+  padding: 5px 6px;
+}
+
+.govt-table-alt tbody td {
+  padding: 4px 8px;
+  border-color: #e0e0e0;
+}
+
+/* Total Row - LEFT (blue) */
+.total-row-left {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important; /* light blue */
+  font-weight: 700 !important;
+}
+
+.total-row-left td {
+  color: #0d47a1 !important; /* dark blue */
+  font-size: 0.75rem !important;
+}
+
+/* Total Row - RIGHT (deep green/black text) */
+.total-row-right {
+  background: linear-gradient(135deg, #f1f8f3 0%, #e0f2e9 100%) !important; /* very light green */
+  font-weight: 700 !important;
+}
+
+.total-row-right td {
+  color: #072b02 !important; /* deep green */
+  font-size: 0.75rem !important;
+}
+
+/* Right-side total badge */
+.total-badge-right {
+  color: #000 !important; /* show total in black */
+  background: transparent !important; /* let header gradient show through */
+  border: none !important;
+  font-weight: 400; /* normal weight to match request */
+  font-size: 0.85rem; /* match header/title size */
+  padding: 0.08rem 0.4rem; /* tightened spacing */
+  line-height: 1;
+}
+
+/* Minor Irrigation: make total row values black and unbold */
+.mi-table-wrap .total-row-right.mi-total td {
+  color: #000 !important;
+  font-weight: 400 !important;
+}
+
+/* MI Summary Table */
+.mi-summary-table tbody td {
+  padding: 3px 6px;
+}
+
+/* Structures Detail Table */
+.structures-detail-table {
+  font-size: 0.72rem;
+}
+
+.structures-detail-table thead th {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.68rem;
+  padding: 5px 6px;
+  font-weight: 600;
+}
+
+.structures-detail-table tbody td {
+  padding: 5px 8px;
+  border-color: #e0e0e0;
+}
+
+/* Minor Irrigation equal-height helpers */
+.mi-row { align-items: stretch; }
+.mi-col { display: flex; flex-direction: column; }
+.mi-card-content { display: flex; flex-direction: column; flex: 1; }
+.mi-table-wrap { flex: 1; overflow: auto; display: flex; flex-direction: column; }
+.mi-table-wrap table { width: 100%; flex: 1 1 auto; height: 100%; }
+.mi-donut-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 6px 8px; }
+
+/* ============== STAT BOX STYLES ============== */
+.card-header-govt-alt, .card-header-govt { position: relative; font-size: 0.85rem; }
+.no-count-header {
+  position: absolute;
+  right: 1.5px; /* nudged further right to align over the value column */
+  width: 80px; /* same as value column */
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.stat-box {
+  padding: 8px 4px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.stat-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.stat-box-mini {
+  padding: 6px 4px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.stat-box-mini .stat-num {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-box-mini .stat-lbl {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 1px;
+}
+
+.stat-box-mini.primary { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-color: #90caf9; }
+.stat-box-mini.primary .stat-num { color: #1565c0; }
+.stat-box-mini.success { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #a5d6a7; }
+.stat-box-mini.success .stat-num { color: #2e7d32; }
+.stat-box-mini.warning { background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); border-color: #ffe082; }
+.stat-box-mini.warning .stat-num { color: #f57f17; }
+.stat-box-mini.danger { background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-color: #ef9a9a; }
+.stat-box-mini.danger .stat-num { color: #c62828; }
+.stat-box-mini.info { background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border-color: #80deea; }
+.stat-box-mini.info .stat-num { color: #00838f; }
+
+.stat-box-primary { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-color: #90caf9; }
+.stat-box-primary .stat-number { color: #1565c0; }
+
+/* Hover lift effect for stat boxes */
+.stat-box, .stat-box-mini {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform, box-shadow;
+  cursor: pointer;
+}
+
+.stat-box:hover, .stat-box-mini:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(16,24,40,0.12);
+}
+
+.hover-lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: inline-block;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(16,24,40,0.12);
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .stat-box:hover, .stat-box-mini:hover { transform: translateY(-3px); }
+  .hover-lift:hover { transform: translateY(-3px); }
+}
+
+/* ============== CHART STYLES ============== */
+.chart-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Center chart wrapper - centers horizontally and nudges content down a little */
+.chart-center-wrap {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  width: 100%;
+  padding-top: 20px; /* consistent vertical nudge so charts align with left column */
+}
+
+/* Removed inline margin-top usage; spacing is handled by CSS for consistent layout */
+
+/* ============== TABLE ROW HOVER LIFT ============== */
+.hover-lift-rows tbody tr {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  transform: translateY(0);
+  position: relative;
+}
+
+.hover-lift-rows tbody tr:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(16,24,40,0.08);
+  background-color: rgba(255,255,255,0.02);
+  z-index: 2;
+}
+
+/* Make sure table cells don't clip the shadow */
+.hover-lift-rows,
+.hover-lift-rows tbody,
+.hover-lift-rows tbody tr,
+.hover-lift-rows tbody td {
+  overflow: visible;
+}
+
+.custom-tooltip {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 0.7rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-tooltip .tooltip-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.recharts-legend-item-text {
+  font-size: 0.65rem !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 0.65rem;
+}
+
+/* ============== USER PROFILE CARD ============== */
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #90a4ae;
+  border: 2px solid #b0bec5;
+}
+
+.user-details {
+  font-size: 0.75rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #1565c0;
+  min-width: 80px;
+  display: inline-block;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.detail-value-sm {
+  color: #555;
+  font-size: 0.7rem;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.contact-icon {
+  font-size: 0.7rem;
+}
+
+/* ============== PENDING APPROVALS - RED WARNING ============== */
+.pending-badge-warning {
+  background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(198, 40, 40, 0.35);
+  padding: 8px 4px !important;
+}
+
+.pending-count {
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pending-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tiny-text {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+}
+
+/* ============== UTILITY CLASSES ============== */
+.text-primary { color: #1565c0 !important; }
+.text-success { color: #2e7d32 !important; }
+.text-info { color: #0097a7 !important; }
+.text-warning { color: #f57f17 !important; }
+.text-danger { color: #c62828 !important; }
+
+/* ============== SCROLLBAR ============== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #bdbdbd; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9e9e9e; }
+
+/* ============== DESKTOP (>= 992px) ============== */
+@media (min-width: 992px) {
+  .enc-admin-dashboard .row > [class*="col-lg-5"],
+  .enc-admin-dashboard .row > [class*="col-lg-7"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enc-admin-dashboard .row > [class*="col-lg-7"] > .dashboard-card:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enc-admin-dashboard .row > [class*="col-lg-7"] > .dashboard-card:last-child > .card-body {
+    flex: 1;
+  }
+}
+
+/* ============== TABLET (577px - 991px) ============== */
+@media (min-width: 577px) and (max-width: 991px) {
+  .enc-admin-dashboard {
+    padding: 8px;
+  }
+
+  .dashboard-title { font-size: 1rem; }
+  .gov-logo { height: 38px; }
+  .user-avatar { width: 55px; height: 55px; }
+  .detail-label { font-size: 0.68rem; }
+  .govt-table, .govt-table-alt { font-size: 0.68rem; }
+  .stat-number { font-size: 1rem; }
+  .stat-box-mini .stat-num { font-size: 0.85rem; }
+  .chart-title { font-size: 0.75rem; }
+}
+
+/* ============== MEDIUM SCREENS ============== */
+@media (max-width: 1200px) {
+  .enc-admin-dashboard { padding: 8px; }
+  .stat-number { font-size: 1rem; }
+  .stat-box-mini .stat-num { font-size: 0.9rem; }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header { padding: 8px 12px; }
+  .dashboard-title { font-size: 0.95rem; }
+  .gov-logo { height: 35px; }
+  .govt-table { font-size: 0.65rem; }
+}
+
+/* ============== MOBILE (max-width: 576px) ============== */
+@media (max-width: 576px) {
+  .enc-admin-dashboard { padding: 5px; }
+  .dashboard-header { padding: 8px 10px; }
+  .dashboard-header .row { justify-content: center; }
+  .dashboard-title { font-size: 0.85rem; }
+  .header-subtitle { font-size: 0.65rem; }
+  .gov-logo { height: 30px; }
+
+  .user-avatar { width: 45px; height: 45px; }
+  .user-avatar svg { width: 35px !important; height: 35px !important; }
+  .detail-label { font-size: 0.65rem; min-width: 60px; }
+  .detail-value { font-size: 0.7rem; }
+  .detail-value-sm { font-size: 0.6rem; }
+
+  .card-header-govt, .card-header-govt-alt { font-size: 0.78rem; padding: 5px 8px; }
+
+  .govt-table, .govt-table-alt, .structures-detail-table { font-size: 0.6rem; }
+  .govt-table thead th, .govt-table-alt thead th,
+  .structures-detail-table thead th { font-size: 0.55rem; padding: 4px 3px; }
+  .govt-table tbody td, .govt-table-alt tbody td,
+  .structures-detail-table tbody td { padding: 3px 4px; }
+
+  .stat-box { padding: 6px 3px; }
+  .stat-number { font-size: 0.9rem; }
+  .stat-label { font-size: 0.5rem; }
+  .stat-box-mini { padding: 5px 3px; }
+  .stat-box-mini .stat-num { font-size: 0.8rem; }
+  .stat-box-mini .stat-lbl { font-size: 0.45rem; }
+
+  .chart-title { font-size: 0.7rem; }
+  .recharts-legend-item-text { font-size: 0.55rem !important; }
+
+  .pending-badge-warning { padding: 6px 4px !important; }
+  .pending-count { font-size: 1rem; }
+  .pending-label { font-size: 0.5rem; }
+  .tiny-text { font-size: 0.5rem; }
+
+  .total-row td { font-size: 0.65rem !important; }
+}
+
+/* ============== PRINT STYLES ============== */
+@media print {
+  .enc-admin-dashboard { padding: 0; }
+  .dashboard-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  .card-header-govt, .card-header-govt-alt { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* Specific Warning for ACR/APR */
+.pending-badge-alert-orange {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important; /* Light Orange */
+  border: 1px solid #ffb74d !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(255, 152, 0, 0.2);
+  padding: 8px 4px !important;
+}
+
+.pending-badge-alert-orange .pending-count {
+  color: #d32f2f !important; /* Red Color for Number */
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.pending-badge-alert-orange .pending-label {
+  color: #c62828 !important; /* Red Color for Label */
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Light red alert for APR/ACR with red number text */
+.pending-badge-alert-red {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%) !important; /* Light Red */
+  border: 1px solid #ef9a9a !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(198, 40, 40, 0.12);
+  padding: 8px 4px !important;
+}
+
+.badge.pending-badge-alert-red {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%) !important;
+}
+
+.pending-badge-alert-red .pending-count {
+  color: #b71c1c !important; /* Dark red for number */
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.pending-badge-alert-red .pending-label {
+  color: #b71c1c !important; /* Dark red for label */
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
