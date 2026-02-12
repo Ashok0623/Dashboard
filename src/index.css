@@ -1,0 +1,186 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", -apple-system, BlinkMacSystemFont, "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f6fa;
+  font-size: 12px;
+  color: #333;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* ============== GOVERNMENT DASHBOARD STYLES ============== */
+.enc-admin-dashboard {
+  padding: 10px;
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+/* Header */
+.dashboard-header {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-title {
+  color: white !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+}
+
+.gov-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* ============== CARD STYLES ============== */
+.dashboard-card {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.card-header-govt {
+  background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: none;
+}
+
+.card-header-govt-alt {
+  background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: none;
+}
+
+/* ============== TABLE STYLES ============== */
+.govt-table {
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
+.govt-table thead th {
+  background-color: #e3f2fd;
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: #1565c0;
+  border-bottom: 1px solid #90caf9;
+  padding: 5px 6px;
+  white-space: nowrap;
+}
+
+.govt-table tbody td {
+  padding: 4px 6px;
+  vertical-align: middle;
+  border-color: #e0e0e0;
+}
+
+.govt-table-alt {
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
+.govt-table-alt thead th {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-bottom-color: #a5d6a7;
+  font-weight: 600;
+  font-size: 0.68rem;
+  padding: 5px 6px;
+}
+
+.govt-table-alt tbody td {
+  padding: 4px 8px;
+  border-color: #e0e0e0;
+}
+
+/* Total Row - LEFT (blue) */
+.total-row-left {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important; /* light blue */
+  font-weight: 700 !important;
+}
+
+.total-row-left td {
+  color: #0d47a1 !important; /* dark blue */
+  font-size: 0.75rem !important;
+}
+
+/* Total Row - RIGHT (deep green/black text) */
+.total-row-right {
+  background: linear-gradient(135deg, #f1f8f3 0%, #e0f2e9 100%) !important; /* very light green */
+  font-weight: 700 !important;
+}
+
+.total-row-right td {
+  color: #072b02 !important; /* deep green */
+  font-size: 0.75rem !important;
+}
+
+/* Right-side total badge */
+.total-badge-right {
+  color: #fff !important; /* show total in white */
+  background: transparent !important; /* let header gradient show through */
+  border: none !important;
+  font-weight: 700 !important; /* make badge bold */
+  font-size: 0.85rem; /* match header/title size */
+  padding: 0.08rem 0.4rem; /* tightened spacing */
+  line-height: 1;
+}
+
+/* Minor Irrigation: make total row values black and bold */
+.mi-table-wrap .total-row-right.mi-total td {
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+/* Bold small, right-aligned values inside the MI table */
+.mi-table-wrap td.small.text-end {
+  font-weight: 700 !important;
+}
+
+/* MI Summary Table */
+.mi-summary-table tbody td {
+  padding: 3px 6px;
+}
+
+/* Structures Detail Table */
+.structures-detail-table {
+  font-size: 0.72rem;
+}
+
+.structures-detail-table thead th {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.68rem;
+  padding: 5px 6px;
+  font-weight: 600;
+}
+
+.structures-detail-table tbody td {
+  padding: 5px 8px;
+  border-color: #e0e0e0;
+}
