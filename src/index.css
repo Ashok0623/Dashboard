@@ -142,19 +142,29 @@ code {
 
 /* Right-side total badge */
 .total-badge-right {
-  color: #000 !important; /* show total in black */
+  color: #fff !important; /* show total in white */
   background: transparent !important; /* let header gradient show through */
   border: none !important;
-  font-weight: 400; /* normal weight to match request */
+  font-weight: 700 !important; /* make badge bold */
   font-size: 0.85rem; /* match header/title size */
   padding: 0.08rem 0.4rem; /* tightened spacing */
   line-height: 1;
 }
 
-/* Minor Irrigation: make total row values black and unbold */
+/* Minor Irrigation: make total row values black and bold */
 .mi-table-wrap .total-row-right.mi-total td {
   color: #000 !important;
+  font-weight: 700 !important;
+}
+
+/* Small, right-aligned values inside the MI table — keep normal weight; totals remain bold */
+.mi-table-wrap td.small.text-end {
   font-weight: 400 !important;
+}
+
+/* Ensure Total Tanks numeric cell is always bold (higher specificity to override .small.text-end) */
+.mi-table-wrap td.small.text-end.mi-total-value {
+  font-weight: 700 !important;
 }
 
 /* MI Summary Table */

@@ -401,7 +401,7 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
                           {minorIrrigationData.slice(0, 6).map((row, idx) => (
                             <tr key={idx} className={row.type === "Total Tanks" ? "total-row-right mi-total" : ""}>
                               <td className="small">{row.type}</td>
-                              <td className="text-end small">{row.count.toLocaleString()}</td>
+                              <td className={`text-end small ${row.type === "Total Tanks" ? "mi-total-value" : ""}`}>{row.count.toLocaleString()}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -430,8 +430,9 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
                       <Tooltip content={<CustomTooltip />} />
                       <Legend wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }} iconSize={8} />
                       <Bar dataKey="AS" name="Admin Sanction" fill={BAR_COLORS.as} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={0} animationEasing="ease-out" />
-                      <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
-                      <Bar dataKey="Agreements" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
+                      {/* swapped colors: Agreements (was orange) -> green, Tech Sanction (was green) -> orange */}
+                      <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
+                      <Bar dataKey="Agreements" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
                     </BarChart>
                     </ResponsiveContainer>
                   </div>
