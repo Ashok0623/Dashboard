@@ -9,8 +9,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  LineChart,
-  Line,
 } from "recharts";
 
 import {
@@ -23,14 +21,11 @@ import {
   infrastructureData,
   ayacutData,
   minorIrrigationData,
-  mkPhaseWiseData,
   omWorksData,
   pendingApprovalsData,
 } from "../data/dashboardData";
 
 import MinorIrrigationDonut from "./MinorIrrigationDonut";
-
-const PIE_COLORS = ["#1565c0", "#2e7d32", "#f57f17", "#c62828", "#7b1fa2"];
 
 const BAR_COLORS = {
   as: "#1565c0",
@@ -43,49 +38,8 @@ const ANIMATION_CONFIG = {
   delay: 200,
 };
 
-interface ENCAdminDashboardProps {
-  userInfo?: {
-    name: string;
-    designation: string;
-    office: string;
-    phone?: string;
-    email?: string;
-  };
-}
-
-interface TooltipPayload {
-  name: string;
-  value: number;
-  color: string;
-}
-
-const renderCustomLabel = ({
-  cx, cy, midAngle, outerRadius, percent, name,
-}: {
-  cx?: number; cy?: number; midAngle?: number; outerRadius?: number; percent?: number; name?: string;
-}) => {
-  const RADIAN = Math.PI / 180;
-  const _cx = cx || 0;
-  const _cy = cy || 0;
-  const _midAngle = midAngle || 0;
-  const _outerRadius = outerRadius || 0;
-  const _percent = percent || 0;
-  const _name = name || "";
-  const radius = _outerRadius + 25;
-  const x = _cx + radius * Math.cos(-_midAngle * RADIAN);
-  const y = _cy + radius * Math.sin(-_midAngle * RADIAN);
-  const percentValue = _percent * 100;
-  const formattedPercent = percentValue < 1 ? percentValue.toFixed(1) : Math.round(percentValue);
-  return (
-    <text x={x} y={y} fill="#333" textAnchor={x > _cx ? "start" : "end"} dominantBaseline="central" fontSize={10} fontWeight={500}>
-      {`${_name} ${formattedPercent}%`}
-    </text>
-  );
-};
-
-const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
+const ENCAdminDashboard = ({ userInfo }) => {
   const miChartData = useMemo(() => {
-    // Include all minor irrigation sources (tank sub-types + anicuts + check dams), exclude aggregate 'Total' rows
     return minorIrrigationData
       .filter((item) => !item.type.startsWith("Total"))
       .map((item) => ({ name: item.type.replace(/\s*Tanks?$/i, ""), value: item.count }));
@@ -116,10 +70,7 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
     }));
   }, []);
 
-  // Phase-wise chart data: exclude the 'Others' placeholder so the X axis shows the real phases (incl. CD phase1)
-  const mkPhaseChartData = useMemo(() => mkPhaseWiseData.filter((d) => d.phase !== "Others"), []);
-
-  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) => {
+  const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
@@ -145,7 +96,7 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
               src="https://irrigation.telangana.gov.in/images/tg_logo.png"
               alt="Telangana Logo"
               className="gov-logo"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+              onError={(e) => { e.target.style.display = "none"; }}
             />
           </Col>
           <Col>
@@ -285,7 +236,7 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
             </Col>
           </Row>
 
-          {/* PENDING APPROVALS - RED WARNING */}
+          {/* PENDING APPROVALS */}
           <Card className="dashboard-card">
             <Card.Header className="card-header-govt">Pending Approvals</Card.Header>
             <Card.Body className="py-2 px-2">
@@ -306,7 +257,7 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
 
         {/* RIGHT COLUMN */}
         <Col lg={7} className="d-flex flex-column gap-2">
-          {/* MAJOR & INFRASTRUCTURE - REARRANGED LAYOUT */}
+          {/* MAJOR & INFRASTRUCTURE */}
           <Row className="g-2">
             <Col md={6} xs={12}>
               <Card className="dashboard-card h-100">
@@ -368,101 +319,34 @@ const ENCAdminDashboard: React.FC<ENCAdminDashboardProps> = ({ userInfo }) => {
               <span className="float-end badge total-badge-right">{structuresSummary.find(s => s.isTotal)?.value.toLocaleString()} No's</span>
             </Card.Header>
             <Card.Body className="p-2">
-              <Row className="g-2 mi-row">
-                <Col lg={5} md={12} xs={12} className="mi-col">
-                  <div className="chart-title">Minor Irrigation Sources</div>
-                  <div className="mi-donut-wrap">
-                    <MinorIrrigationDonut data={miChartData} height="100%" />
-                  </div>
-                </Col>
-                <Col lg={3} md={6} xs={6} className="mi-col">
-                  <div className="mi-card-content">
-                    <div className="chart-title fw-bold">MI Sources Summary</div>
-                    <div className="mi-table-wrap">
-                      <Table bordered size="sm" className="mb-0 structures-detail-table hover-lift-rows">
-                        <tbody>
-                          {structuresSummary.map((row, idx) => (
-                            <tr key={idx} className={row.isTotal ? "total-row-right mi-total" : ""}>
-                              <td>{row.name}</td>
-                              <td className="text-end">{row.value.toLocaleString()}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </Table>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={4} md={6} xs={6} className="mi-col">
-                  <div className="mi-card-content">
-                    <div className="chart-title fw-bold">Tank Details</div>
-                    <div className="mi-table-wrap">
-                      <Table bordered size="sm" className="mb-0 govt-table-alt mi-summary-table hover-lift-rows">
-                        <tbody>
-                          {minorIrrigationData.slice(0, 6).map((row, idx) => (
-                            <tr key={idx} className={row.type === "Total Tanks" ? "total-row-right mi-total" : ""}>
-                              <td className="small">{row.type}</td>
-                              <td className={`text-end small ${row.type === "Total Tanks" ? "mi-total-value" : ""}`}>{row.count.toLocaleString()}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </Table>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
+              <div className="mi-donut-wrap" style={{ height: '250px' }}>
+                <MinorIrrigationDonut data={miChartData} height="100%" />
+              </div>
             </Card.Body>
           </Card>
 
-          {/* O&M WORKS - Charts only */}
-          <Row className="g-2 align-items-stretch">
-            <Col md={6} xs={12}>
-              <Card className="dashboard-card h-100">
-                <Card.Header className="card-header-govt-alt">
-                  O&M Works (Financial Year)
-                </Card.Header>
-                <Card.Body className="p-2">
-                  <div className="chart-center-wrap">
-                    <ResponsiveContainer width="100%" height={200}>
-                      <BarChart data={omChartData} barGap={1} barCategoryGap="15%">
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="year" tick={{ fontSize: 10 }} />
-                      <YAxis tick={{ fontSize: 10 }} label={{ value: 'No of Works', angle: -90, position: 'insideLeft', dy: 0, dx: 6, style: { fill: '#000', fontWeight: 700, fontSize: 11, textAnchor: 'middle' } }} />
-                      <Tooltip content={<CustomTooltip />} />
-                      <Legend wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }} iconSize={8} />
-                      <Bar dataKey="AS" name="Admin Sanction" fill={BAR_COLORS.as} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={0} animationEasing="ease-out" />
-                      {/* swapped colors: Agreements (was orange) -> green, Tech Sanction (was green) -> orange */}
-                      <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
-                      <Bar dataKey="Agreements" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
-                    </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={6} xs={12}>
-              <Card className="dashboard-card h-100">
-                <Card.Header className="card-header-govt-alt">
-                  MK Phase wise works
-                </Card.Header>
-                <Card.Body className="p-2">
-                  <div className="chart-center-wrap">
-                    <ResponsiveContainer width="100%" height={200}>
-                      <BarChart data={mkPhaseChartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }} barGap={1} barCategoryGap="15%">
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="phase" tick={{ fontSize: 10 }} interval={0} />
-                      <YAxis tick={{ fontSize: 10 }} label={{ value: 'No of Works', angle: -90, position: 'insideLeft', dy: 0, dx: 6, style: { fill: '#000', fontWeight: 700, fontSize: 11, textAnchor: 'middle' } }} />
-                      <Tooltip />
-                      <Legend wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }} iconSize={8} />
-                      <Bar dataKey="adminSanction" name="Admin Sanction" fill={BAR_COLORS.as} barSize={12} />
-                      <Bar dataKey="agreements" name="Agreements" fill={BAR_COLORS.agmt} barSize={12} />
-                      <Bar dataKey="worksCompleted" name="Works completed" fill={BAR_COLORS.ts} barSize={12} />
-                    </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+          {/* O&M WORKS - Full Width */}
+          <Card className="dashboard-card">
+            <Card.Header className="card-header-govt-alt">
+              O&M Works (Financial Year)
+            </Card.Header>
+            <Card.Body className="p-2">
+              <div className="chart-center-wrap">
+                <ResponsiveContainer width="100%" height={200}>
+                  <BarChart data={omChartData} barGap={1} barCategoryGap="15%">
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="year" tick={{ fontSize: 10 }} />
+                    <YAxis tick={{ fontSize: 10 }} label={{ value: 'No of Works', angle: -90, position: 'insideLeft', dy: 0, dx: 6, style: { fill: '#000', fontWeight: 700, fontSize: 11, textAnchor: 'middle' } }} />
+                    <Tooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }} iconSize={8} />
+                    <Bar dataKey="AS" name="Admin Sanction" fill={BAR_COLORS.as} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={0} animationEasing="ease-out" />
+                    <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
+                    <Bar dataKey="Agreements" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </div>

@@ -3,8 +3,7 @@ import { Container } from "react-bootstrap";
 import ENCAdminDashboard from "./components/ENCAdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const App: React.FC = () => {
-  // Sample user info - in real app this would come from auth
+const App = () => {
   const userInfo = {
     name: "Santhu Prakash Rao Poladi",
     designation: "EE",

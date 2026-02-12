@@ -531,6 +531,9 @@ code {
   .tiny-text { font-size: 0.5rem; }
 
   .total-row td { font-size: 0.65rem !important; }
+
+  /* MI pie chart stacks vertically on mobile */
+  .mi-donut-wrap { height: 320px !important; }
 }
 
 /* ============== PRINT STYLES ============== */

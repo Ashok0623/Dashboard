@@ -5,20 +5,13 @@
  */
 
 // ============== CADRE STRENGTH ==============
-export interface CadreStrengthData {
-  cadre: string;
-  sanctionedStrength: number | string;
-  workingStrength: number | string;
-  vacant: number | string;
-}
-
-export const engineeringCadreData: CadreStrengthData[] = [
+export const engineeringCadreData = [
   { cadre: "Engineering Cadre", sanctionedStrength: 2450, workingStrength: 2156, vacant: 294 },
   { cadre: "Unit level Establishment", sanctionedStrength: 850, workingStrength: 742, vacant: 108 },
   { cadre: "Total", sanctionedStrength: 3300, workingStrength: 2898, vacant: 402 },
 ];
 
-export const nonIrrigationPostsData: CadreStrengthData[] = [
+export const nonIrrigationPostsData = [
   { cadre: "TSIDC LTD", sanctionedStrength: 125, workingStrength: 98, vacant: 27 },
   { cadre: "DG Walamtari, Hyderabad", sanctionedStrength: 82, workingStrength: 71, vacant: 11 },
   { cadre: "TSERL, Hyderabad", sanctionedStrength: 95, workingStrength: 84, vacant: 11 },
@@ -26,12 +19,7 @@ export const nonIrrigationPostsData: CadreStrengthData[] = [
 ];
 
 // ============== EMPLOYEE TYPES ==============
-export interface EmployeeTypeData {
-  type: string;
-  count: number;
-}
-
-export const employeeTypesData: EmployeeTypeData[] = [
+export const employeeTypesData = [
   { type: "Contract Employees", count: 143 },
   { type: "Work Charged Employees", count: 913 },
   { type: "Out-Sourcing Employees", count: 647 },
@@ -39,36 +27,21 @@ export const employeeTypesData: EmployeeTypeData[] = [
 ];
 
 // ============== ENGINEER SECURITY SCHEME ==============
-export interface ESSData {
-  category: string;
-  count: number;
-}
-
-export const essData: ESSData[] = [
+export const essData = [
   { category: "Working Strength", count: 3249 },
   { category: "ESS Paid", count: 1667 },
   { category: "ESS Not Paid", count: 1582 },
 ];
 
 // ============== HIGH COURT LEGAL CASES ==============
-export interface LegalCasesData {
-  category: string;
-  count: number;
-}
-
-export const legalCasesData: LegalCasesData[] = [
+export const legalCasesData = [
   { category: "Total Cases", count: 6604 },
   { category: "Pending", count: 4029 },
   { category: "Disposed", count: 2575 },
 ];
 
 // ============== MAJOR & MEDIUM IRRIGATION ==============
-export interface IrrigationProjectData {
-  project: string;
-  count: number | string;
-}
-
-export const majorMediumIrrigationData: IrrigationProjectData[] = [
+export const majorMediumIrrigationData = [
   { project: "Major Irrigation Projects", count: 85 },
   { project: "Medium Irrigation Projects", count: "-" },
   { project: "Reservoirs/Barrages", count: 160 },
@@ -78,7 +51,7 @@ export const majorMediumIrrigationData: IrrigationProjectData[] = [
   { project: "Land Acquisition", count: "13.04 Lakh Acres" },
 ];
 
-export const infrastructureData: IrrigationProjectData[] = [
+export const infrastructureData = [
   { project: "Buildings", count: 370 },
   { project: "Quarters", count: "-" },
   { project: "Vehicles", count: 178 },
@@ -86,23 +59,13 @@ export const infrastructureData: IrrigationProjectData[] = [
 ];
 
 // ============== AYACUT DATA ==============
-export interface AyacutData {
-  category: string;
-  value: string;
-}
-
-export const ayacutData: AyacutData[] = [
+export const ayacutData = [
   { category: "Contemplated", value: "NA" },
   { category: "Created", value: "NA" },
 ];
 
 // ============== MINOR IRRIGATION ==============
-export interface MinorIrrigationData {
-  type: string;
-  count: number;
-}
-
-export const minorIrrigationData: MinorIrrigationData[] = [
+export const minorIrrigationData = [
   { type: "MI Tanks", count: 34245 },
   { type: "Percolation Tanks", count: 4058 },
   { type: "Forest Tanks", count: 168 },
@@ -115,14 +78,7 @@ export const minorIrrigationData: MinorIrrigationData[] = [
 ];
 
 // ============== MK PHASE WISE WORKS ==============
-export interface MKPhaseData {
-  phase: string;
-  adminSanction: number;
-  agreements: number;
-  worksCompleted: number;
-}
-
-export const mkPhaseWiseData: MKPhaseData[] = [
+export const mkPhaseWiseData = [
   { phase: "Phase 1", adminSanction: 63, agreements: 50, worksCompleted: 49 },
   { phase: "Phase 2", adminSanction: 1280, agreements: 1264, worksCompleted: 1245 },
   { phase: "Phase 3", adminSanction: 1521, agreements: 1485, worksCompleted: 1443 },
@@ -133,15 +89,7 @@ export const mkPhaseWiseData: MKPhaseData[] = [
 ];
 
 // ============== O&M WORKS DATA ==============
-export interface OMWorksData {
-  slNo: number;
-  financialYear: string;
-  adminSanction: { nos: number; amount: number };
-  technicalSanction: { nos: number; amount: number };
-  agreements: { nos: number; amount: number };
-}
-
-export const omWorksData: OMWorksData[] = [
+export const omWorksData = [
   { slNo: 1, financialYear: "2020-21", adminSanction: { nos: 63, amount: 18398.89 }, technicalSanction: { nos: 50, amount: 13312.26 }, agreements: { nos: 49, amount: 1666.06 } },
   { slNo: 2, financialYear: "2021-22", adminSanction: { nos: 1280, amount: 35219.32 }, technicalSanction: { nos: 1264, amount: 33835.94 }, agreements: { nos: 1245, amount: 18552.10 } },
   { slNo: 3, financialYear: "2022-23", adminSanction: { nos: 1521, amount: 24981.20 }, technicalSanction: { nos: 1485, amount: 24620.96 }, agreements: { nos: 1443, amount: 16848.03 } },
@@ -151,12 +99,7 @@ export const omWorksData: OMWorksData[] = [
 ];
 
 // ============== PENDING APPROVALS ==============
-export interface PendingApprovalData {
-  type: string;
-  count: number | string;
-}
-
-export const pendingApprovalsData: PendingApprovalData[] = [
+export const pendingApprovalsData = [
   { type: "ACR Pending", count: "-" },
   { type: "APR Pending", count: "-" },
 ];
