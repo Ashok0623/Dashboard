@@ -339,9 +339,9 @@ const ENCAdminDashboard = ({ userInfo }) => {
                     <YAxis tick={{ fontSize: 10 }} label={{ value: 'No of Works', angle: -90, position: 'insideLeft', dy: 0, dx: 6, style: { fill: '#000', fontWeight: 700, fontSize: 11, textAnchor: 'middle' } }} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: "10px", paddingTop: "5px" }} iconSize={8} />
-                    <Bar dataKey="AS" name="Admin Sanction" fill={BAR_COLORS.as} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={0} animationEasing="ease-out" />
-                    <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
-                    <Bar dataKey="Agreements" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={12} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
+                    <Bar dataKey="AS" name="Admin Sanction" fill={BAR_COLORS.as} radius={[2, 2, 0, 0]} barSize={20} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={0} animationEasing="ease-out" />
+                    <Bar dataKey="TS" name="Tech Sanction" fill={BAR_COLORS.agmt} radius={[2, 2, 0, 0]} barSize={20} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay} animationEasing="ease-out" />
+                    <Bar dataKey="Agreements" fill={BAR_COLORS.ts} radius={[2, 2, 0, 0]} barSize={20} isAnimationActive animationDuration={ANIMATION_CONFIG.duration} animationBegin={ANIMATION_CONFIG.delay * 2} animationEasing="ease-out" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
